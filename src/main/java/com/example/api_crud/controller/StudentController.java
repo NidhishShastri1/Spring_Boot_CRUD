@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,12 +28,19 @@ public class StudentController {
 	}
 	
 	@DeleteMapping
-	public void removeStudent() {
+	public String removeStudent(@RequestParam int pk) {
+		return studentService.removeStudent(pk);
+		
+	}
+	@DeleteMapping("/all")
+	public String removeStudents() {
+		return studentService.removeStudents();
 		
 	}
 	
-	@GetMapping("/id")
-	public void fetchStudent( ) {
+	@GetMapping("/id/{pk}")
+	public Object fetchStudent(@PathVariable int pk ) {
+		return studentService.fetchStudent( pk);
 		
 	}
 	
@@ -42,8 +50,8 @@ public class StudentController {
 	}
 	
 	@PutMapping
-	public void updateStudent() {
-	
+	public String updateStudent(Student student) {
+		return studentService.updateStudent(student);
 	}
 
 }
