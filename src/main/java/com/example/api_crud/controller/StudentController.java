@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
-
 import com.example.api_crud.model.Student;
 import com.example.api_crud.service.StudentService;
 
@@ -27,12 +25,12 @@ public class StudentController {
 		return studentService.addStudent(student);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/id")
 	public String removeStudent(@RequestParam int pk) {
 		return studentService.removeStudent(pk);
 		
 	}
-	@DeleteMapping("/all")
+	@DeleteMapping
 	public String removeStudents() {
 		return studentService.removeStudents();
 		
